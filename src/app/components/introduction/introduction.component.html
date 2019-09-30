@@ -1,0 +1,63 @@
+
+<div class="blog-post">
+        <h2 class="blog-post-title">Summary</h2>
+        <p class="blog-post-meta">September 29, 2019 by <a href="#">Gary</a></p>
+
+        <p>
+            This dummy project demonstrates a few areas of development in frontend and backend. As it is limited by scope, 
+            I have shown the basic more than a production completeness. Therefore, I write this summary to summarize what 
+            have done and make comments for possible improvements. Development details are also included.
+        </p>
+        <p>
+            Briefly, this project implemented microservices to allow CRUD operations to the data store. While frontend consume 
+            the services and present data through web pages. It is important to decouple data, business logic and presentations.
+        </p>
+        <hr>
+        <h2>Backend</h2>
+        <p>What backend provides is the WESTFUL API for data munipulations.</p>
+        <ol>
+          <li>Database: <em>MySQL.</em> Schema is created with <em>CRM_Table.sql</em>. There are three tables: <em>Customer</em>, 
+            <em>Office</em>, and their relation table. A customer can have multiple offices and a office can have many customers. 
+            After installing MySQL, there are three parameters <em>url, username, password</em> need to be set. Populating test data
+            into the three tables can be done easily through sql editor.</li>
+          <li>The OM tools are myBatis and Spring. </li>
+          <li>Three APIs are implemented for DRUD operations.</li>
+          <li><em>Tomcat</em> I use 8.5 and set the port to 8181.</li>
+          <li><em>JDK</em> I use 10 and <em>Eclipse</em> 2019. </li>
+        </ol>
+        <p>Comments</p>
+        <ul>
+          <li>Although foreign key constraints are set, cascade delete is still used for simplicity.</li>
+          <li>Backend storage is a simple setup for this project. No clustering is involved. In fact, the CRUD service here implemented 
+              could simply be a reverse proxy in some HA and distributed environments.
+          </li>
+          <li>The CRUD service can be implemented by Node.js. This project use Java technology stack showing microservice can be 
+              independent of languages.</li>
+        </ul>
+   <hr>
+        <h2>Frontend</h2>
+        <p>Frontend is a simple web app in Angular. The implementation carefully maintains separations.</p>
+        <ol>
+            <li>There are 3 pages including this one as a front page. They are <em>Introduction, Customers, Offices</em>.</li>
+            <li>There are two services have been implemented to consume the APIs.</li>
+            <li>On page <em>Customers</em>, the <em>GET</em> operation on the table is shown. A customer can have <em>0</em> to 
+            <em>n</em> offices. This page shows the to-n relationship. </li>
+            <li>On page <em>Offices</em>, all the 4 CRUD operations are applied. The page is self-explained.</li>
+        </ol>
+         <p>Comments</p>
+        <ul>
+          <li>The APIs uri are hard coded. It could be configurable or through a service discovery agent. For example, a DNS. Also
+              they are kept inside the services. Down stream consumers only ask for service and having no information about it.
+          </li>
+          <li>There could be more tests implemented.</li>
+        </ul>
+      </div>
+
+
+
+
+
+
+
+
+

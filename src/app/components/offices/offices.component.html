@@ -1,0 +1,92 @@
+
+<div class="mdl-grid">
+
+<div class="mdl-cell mdl-cell--12-col">
+
+<h2>Offices</h2>
+
+
+<div>
+
+
+
+ <div class="kt-portlet">
+			<div class="kt-portlet__head">
+				<div class="kt-portlet__head-label">					
+						<h3 *ngIf="officeIdToUpdate; else create" class="kt-portlet__head-title"> 
+   						Update Office for Id: {{officeIdToUpdate}}
+						</h3>
+						<ng-template #create>
+   						<h4 class="kt-portlet__head-title"> Add New Office </h4>
+						</ng-template>
+				</div>
+			</div>
+			<!--begin::Form-->
+			<form class="kt-form"  [formGroup] = "officeForm" (ngSubmit)="officeFormSubmit()">
+				<div class="kt-portlet__body">
+					
+					<div class="form-group">
+						<label>Enter Name</label>
+						<input  class="form-control" formControlName="name">
+						<label *ngIf="officeForm.get('name').invalid && processValidation" [ngClass] = "'error'"> Office name is required. </label>
+					</div>
+					<div class="form-group">
+						<label >Enter Address</label>
+						<input  class="form-control" formControlName="address">
+						<label *ngIf="officeForm.get('address').invalid && processValidation" [ngClass] = "'error'"> Office address is required. </label>
+					</div>
+					
+					
+					
+					
+				</div>
+				<div class="kt-portlet__foot">
+					<div class="kt-form__actions kt-section__content kt-section__content--soli">
+						<button *ngIf="!officeIdToUpdate" class="btn btn-primary">CREATE</button>  
+	 					 <button *ngIf="officeIdToUpdate"  class="btn btn-outline-success">UPDATE</button>  
+	 					 <button (click)="backToCreate()" *ngIf="officeIdToUpdate" class="btn btn-outline-info">BACK</button>  
+					</div>
+				</div>
+			</form>
+			<!--end::Form-->			
+		</div>
+ <br/>
+
+<div *ngIf="statusCode">
+   <div *ngIf="statusCode === 201" [ngClass] = "'success'">
+	    Office added successfully.
+   </div>   
+   <div *ngIf="statusCode === 409" [ngClass] = "'success'">
+        Office already exists.
+   </div>   	
+   <div *ngIf="statusCode === 200" [ngClass] = "'success'">
+        Office updated successfully.
+   </div>   	      
+   <div *ngIf="statusCode === 204" [ngClass] = "'success'">
+        Office deleted successfully.
+   </div>   	   
+   <div *ngIf="statusCode === 500" [ngClass] = "'error'">
+        Office Server Error.
+   </div>	
+ </div>
+
+
+
+<h4>Office Details</h4>
+
+<div class="kt-section">
+					<div class="kt-section__content">
+<table class="table">
+<tr><th> Id</th> <th>Name</th><th>Address</th><th></th><th></th></tr>
+  <tr *ngFor="let address of addresses" >
+        <td>{{address.id}}</td> <td>{{address.name}}</td> <td>{{address.address}}</td>
+	<td><button type="button" (click)="loadOfficeForEdit(address.id)">Edit</button> </td> 
+	<td><button type="button" (click)="remove(address.id)">Delete</button></td>
+  </tr>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
