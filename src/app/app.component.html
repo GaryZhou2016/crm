@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<header class="mdl-layout__header">
+<div class="mdl-layout__header-row">
+<span class="mdl-layout-title">Address Book</span>
+<div class="mdl-layout-spacer"></div>
+<nav class="mdl-navigation mdl-layout--large-screen-only">
+<a class="mdl-navigation__link" [routerLink]="['/']">Introduction</a>
+<a class="mdl-navigation__link" [routerLink]="['/customers']">Customers</a>
+<a class="mdl-navigation__link" [routerLink]="['/offices']">Offices</a>
+</nav>
+</div>
+</header>
+<main class="mdl-layout__content" style="padding: 20px;">
+	<router-outlet></router-outlet>
+</main>
+</div>
